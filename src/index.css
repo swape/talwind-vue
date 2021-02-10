@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+input[type='email'],
+input[type='text'],
+input[type='url'],
+textarea,
+select {
+  @apply border ring-blue-500 ring-2 focus:ring-blue-600 focus:bg-gray-50 focus:shadow-inner rounded py-1 px-3 text-blue-900 text-sm sm:text-base shadow;
+  outline: transparent;
+}
