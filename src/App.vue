@@ -10,6 +10,8 @@
     <div class="box mt-8">{{ textValue }}</div>
     <div class="box">{{ textValueReverse }}</div>
     <div class="box">{{ wordCount }} tegn</div>
+    <progress :value="onlyA" :max="wordCount"></progress>
+    <div>{{ toPercent }}% A</div>
   </div>
 </template>
 <script>
@@ -32,6 +34,12 @@ export default {
     },
     wordCount() {
       return this.textValue.split('').length
+    },
+    onlyA() {
+      return this.textValue.split('').filter(i => i.toLowerCase() === 'a').length
+    },
+    toPercent() {
+      return this.wordCount ? Math.round((this.onlyA / this.wordCount) * 100) : 0
     }
   },
   methods: {
@@ -49,5 +57,16 @@ export default {
 .box {
   @apply my-2 bg-yellow-50 rounded-md ring-1 ring-blue-300 py-1 px-4;
   min-height: 33px;
+}
+progress[value] {
+  @apply rounded-md;
+  width: 100%;
+  height: 10px;
+}
+progress[value]::-webkit-progress-bar {
+  @apply rounded-md bg-gray-200 shadow-inner;
+}
+progress[value]::-webkit-progress-value {
+  @apply rounded-md bg-blue-500;
 }
 </style>
